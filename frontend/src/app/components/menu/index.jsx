@@ -1,14 +1,15 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import SettingsIcon from '@mui/icons-material/Settings';
 import SearchIcon from '@mui/icons-material/Search';
 import ListItemText from '@mui/material/ListItemText';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import { NavLink } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import menuLogo from '../../../assets/public/menu_logo.svg';
@@ -28,16 +29,14 @@ const Menu = ({ auth }) => {
     },
   };
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', height: '100vh', backgroundColor: '#F5F5F5' }}>
       <MenuList
         sx={{
-          height: '100vh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'start',
           p: 2,
-          backgroundColor: '#F5F5F5',
-          gap: '6px'
+          gap: '6px',
         }}
       >
         <button onClick={auth.logout}>Logout</button>
@@ -118,7 +117,21 @@ const Menu = ({ auth }) => {
                 )}
           />
         </MenuItem>
+        <MenuItem component={NavLink} to="/settings" sx={{ ...menuItemStyle }}>
+          <SettingsIcon color="disabled" />
+        </MenuItem>
       </MenuList>
+      <Typography
+        component={Link}
+        variant="body2"
+        color="primary"
+        to="/"
+        sx={{
+          textDecoration: 'none', position: 'absolute', bottom: '20px', left: '20px',
+        }}
+      >
+        О проекте
+      </Typography>
     </Box>
   );
 };
